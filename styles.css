@@ -1,0 +1,184 @@
+/* 媒体逐帧控制 */
+
+.mfc-gif-source {
+  cursor: pointer;
+}
+
+/* GIF 逐帧：控制条浮在画面顶部，不额外占一行 */
+.mfc-gif-wrap {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  line-height: 0;
+}
+
+.mfc-canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  image-rendering: auto;
+}
+
+/* 无彩色：纯中性灰，跟 Obsidian 主题走 */
+.mfc-bar {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.55);
+  border: none;
+  box-shadow: none;
+  font-size: 12px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.82);
+  user-select: none;
+  z-index: 5;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+/* 悬停或选中时才显形，平时不挡画面 */
+.mfc-gif-wrap:hover .mfc-bar,
+.mfc-gif-wrap:focus-within .mfc-bar,
+.mfc-gif-wrap.mfc-selected .mfc-bar {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.mfc-btn {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.mfc-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.mfc-icon {
+  display: block;
+  pointer-events: none;
+}
+
+.mfc-label {
+  font-variant-numeric: tabular-nums;
+  min-width: 46px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 11px;
+}
+
+.mfc-close {
+  opacity: 0.7;
+  font-size: 14px;
+}
+
+.mfc-close:hover {
+  opacity: 1;
+}
+
+/* 视频：倍速浮层贴在画面右上角内部 */
+.mfc-video-wrap {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  line-height: 0;
+}
+
+.mfc-video {
+  cursor: pointer;
+  display: block;
+  max-width: 100%;
+}
+
+.mfc-video.mfc-selected,
+.mfc-gif-wrap.mfc-selected {
+  outline: 2px solid var(--interactive-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.mfc-video-bar {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.5);
+  font-size: 12px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.85);
+  user-select: none;
+  z-index: 5;
+  /* 只在鼠标移到视频上时才出现；移开就消失 */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.mfc-video-wrap:hover .mfc-video-bar {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.mfc-video-tag {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.mfc-speed {
+  padding: 0 2px;
+  border-radius: 4px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.9);
+  border: none;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* 循环开关：单色，仅靠透明度区分开/关 */
+.mfc-loop {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.mfc-loop.is-on {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.mfc-loop:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* 下拉展开后的选项仍用主题配色，避免白底白字 */
+.mfc-speed option {
+  background: var(--background-primary);
+  color: var(--text-normal);
+}
