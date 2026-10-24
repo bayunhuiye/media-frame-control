@@ -1,5 +1,7 @@
 # 媒体逐帧控制
 
+**简体中文** ｜ [English](README.en.md)
+
 > **作者**：bayunhuiye ｜ **版本**：1.0.0 ｜ **最低 Obsidian 版本**：1.4.0
 
 给 Obsidian 补上两件它原生没做好的事：
